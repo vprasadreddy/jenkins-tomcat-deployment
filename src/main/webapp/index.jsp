@@ -20,11 +20,11 @@
             <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.w3schools.com/images/w3schools.png" style="width:80%;"></a>
             <a class="w3-bar-item w3-button w3-hide-large w3-large" href="javascript:void(0)" onclick="w3_close()">Close <i class="fa fa-remove"></i></a>
             <a class="w3-bar-item w3-button w3-teal" href="#">Home</a>
-            <a class="w3-bar-item w3-button" href="#">Link 1</a>
-            <a class="w3-bar-item w3-button" href="#">Link 2</a>
-            <a class="w3-bar-item w3-button" href="#">Link 3</a>
-            <a class="w3-bar-item w3-button" href="#">Link 4</a>
-            <a class="w3-bar-item w3-button" href="#">Link 5</a>
+            <a class="w3-bar-item w3-button" href="#">Link 11</a>
+            <a class="w3-bar-item w3-button" href="#">Link 22</a>
+            <a class="w3-bar-item w3-button" href="#">Link 33</a>
+            <a class="w3-bar-item w3-button" href="#">Link 44</a>
+            <a class="w3-bar-item w3-button" href="#">Link 55</a>
             <div>
                 <a class="w3-bar-item w3-button" onclick="myAccordion('demo')" href="javascript:void(0)">Dropdown <i class="fa fa-caret-down"></i></a>
                 <div id="demo" class="w3-hide">
