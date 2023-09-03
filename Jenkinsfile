@@ -12,14 +12,23 @@ pipeline{
         }
 	
 	stage('Maven Build'){
+		steps{
 		sh 'mvn clean install'
+		}
+
 	}
 	stage('Archive Artifacts'){
-		archiveArtifacts artifacts: 'target/*.war'
+		steps{
+archiveArtifacts artifacts: 'target/*.war'
+		}
+		
 	}
 	
 	stage('Tomcat Deployment'){
-		deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.145.49.155:8080/')], contextPath: null, onFailure: false, war: '   **/*.war'
+		steps{
+deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://54.145.49.155:8080/')], contextPath: null, onFailure: false, war: '   **/*.war'
+		}
+		
 	}
 	}
 }
