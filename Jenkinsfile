@@ -1,17 +1,21 @@
-node(){
+pipeline{
+    agent any
+    tools{
+        maven 'maven'
+    }
 
-	def sonarHome = tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'
+    stages{
+        stage('Code Checkout'){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vprasadreddy/jenkins-tomcat-deployment.git']])
+            }
+        }
 	
-	stage('Code Checkout'){
-		checkout changelog: false, poll: false, scm: scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'GitHubCreds', url: 'https://github.com/anujdevopslearn/MavenBuild']])
+	stage('Maven Build'){
+		sh 'mvn clean install'
 	}
-	stage('Build Automation'){
-		sh """
-			ls -lart
-			mvn clean install
-			ls -lart target
-
-		"""
+	stage('Archive Artifacts'){
+		archiveArtifacts artifacts: 'target/*.war'
 	}
 	
 	stage('Code Scan'){
@@ -23,5 +27,6 @@ node(){
 	
 	stage('Code Deployment'){
 		deploy adapters: [tomcat9(credentialsId: 'TomcatCreds', path: '', url: 'http://54.197.62.94:8080/')], contextPath: 'Planview', onFailure: false, war: 'target/*.war'
+	}
 	}
 }
